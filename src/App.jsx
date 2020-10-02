@@ -4,21 +4,24 @@ import {
 	Switch,
 	Route,
 	Redirect
-} from "react-router-dom";
-import Home from "./router/Home";
-import Detail from "./router/Detail";
-import Header from "./components/Header";
+} from 'react-router-dom';
+import Layout from './components/Layout';
+import Header from './components/Header';
+import Home from './router/Home';
+import Detail from './router/Detail';
 
 function App() {
 	return (
-			<Router>
-				<Header />
+		<Router>
+			<Header/>
+			<Layout>
 				<Switch>
 					<Route exact path="/" component={Home}/>
 					<Route path="/detail/:id" component={Detail}/>
-					<Redirect path="*" to="/" />
+					<Redirect path="*" to="/"/>
 				</Switch>
-			</Router>
+			</Layout>
+		</Router>
 	);
 }
 
