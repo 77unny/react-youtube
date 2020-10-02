@@ -5,14 +5,14 @@ import {
 	Route,
 	Redirect
 } from "react-router-dom";
-
 import Home from "./router/Home";
 import Detail from "./router/Detail";
+import Header from "./components/Header";
 
 function App() {
 	return (
 			<Router>
-				<div>Header components</div>
+				<Header />
 				<Switch>
 					<Route exact path="/" component={Home}/>
 					<Route path="/detail/:id" component={Detail}/>
