@@ -1,13 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import List from '../components/List';
+import useStorage from '../hooks/useStorage';
 
-Home.propTypes = {
-	
-};
-
-function Home(props) {
+function Home() {
+	const data = useStorage('popular_data')
 	return (
-		<div>Home</div>
+		<div>
+			{data && <List items={data.items}/>}
+		</div>
 	);
 }
 
