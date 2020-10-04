@@ -1,12 +1,12 @@
 import * as axios from 'axios';
 import {useEffect, useState} from 'react';
 
-export default function useStorage(key) {
+export default function useStorage(key, count) {
 	const [data, setData] = useState();
 
 	useEffect(() => {
 		const getFetchData = async () => {
-			const response = await axios(`${process.env.REACT_APP_POPULAR}?part=snippet&chart=mostPopular&maxResults=25&key=${process.env.REACT_APP_API_KEY}`)
+			const response = await axios(`${process.env.REACT_APP_POPULAR}?part=snippet&chart=mostPopular&maxResults=${count}&key=${process.env.REACT_APP_API_KEY}`)
 			setData(response.data)
 		}
 		const getStorage = localStorage.getItem(key);
@@ -15,7 +15,7 @@ export default function useStorage(key) {
 		} else {
 			getFetchData()
 		}
-	}, [key]);
+	}, [key, count]);
 
 	useEffect(() => {
 		const getStorage = localStorage.getItem(key);
