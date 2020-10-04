@@ -1,12 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import LogoSvg from './LogoSvg';
 import SearchSvg from './SearchSvg';
 
-Header.propTypes = {};
-
-function Header(props) {
+function Header() {
 	return (
 		<Container>
 			<LogoSvg color="#fff"/>
