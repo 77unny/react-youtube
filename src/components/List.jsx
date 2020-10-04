@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components'
 
 List.propTypes = {
 	items: PropTypes.array.isRequired
@@ -8,22 +9,42 @@ List.propTypes = {
 function List({items}) {
 	console.log(items)
 	return (
-		<ul>
+		<ItemList>
 			{items.map((item) => {
 				const {id, snippet} = item;
-				const {title, description, thumbnails} = snippet;
+				const {title, thumbnails} = snippet;
 				return (
-					<li key={id}>
-						<dl>
-							<dt><img src={thumbnails.medium.url} alt={description}/></dt>
-							<dd>{title}</dd>
-							<dd>{description}</dd>
-						</dl>
-					</li>
+					<Item key={id}>
+						<Link href={`/Detail/${id}`}>
+							<Thumbnail><img src={thumbnails.standard.url} alt={title}/></Thumbnail>
+							<Title>{title}</Title>
+						</Link>
+					</Item>
 				)
 			})}
-		</ul>
+		</ItemList>
 	);
 }
 
 export default List;
+
+const ItemList = styled.ul`
+	display: flex;
+	flex-wrap: wrap;
+	margin-left: -10px;
+`
+const Item = styled.li`
+	width: 25%;
+	padding-left: 10px;
+`
+const Link = styled.a`
+	display:block;
+`
+const Thumbnail = styled.div`
+	img {
+		max-width: 100%
+	}
+`
+const Title = styled.div`
+	font-size: 1.2rem;
+`
