@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components'
+import styled, {css} from 'styled-components'
 
 List.propTypes = {
-	items: PropTypes.array.isRequired
+	items: PropTypes.array.isRequired,
+	type : PropTypes.oneOf(['default', 'sidepanel'])
 };
 
-function List({items}) {
-	console.log(items)
+function List({items, type = 'default'}) {
 	return (
-		<ItemList>
+		<ItemList type={type}>
 			{items.map((item) => {
 				const {id, snippet} = item;
 				const {title, thumbnails} = snippet;
@@ -32,6 +32,11 @@ const ItemList = styled.ul`
 	display: flex;
 	flex-wrap: wrap;
 	margin-left: -10px;
+	${props => props.type === 'sidepanel' && css`
+		> li {
+			width: 50%;
+		}
+	`}
 `
 const Item = styled.li`
 	width: 25%;
